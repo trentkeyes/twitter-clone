@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import SideNavBar from "../components/SideNavBar";
 import TwitterFeed from "../components/TwitterFeed";
 
 const Home: NextPage = () => {
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Welcome to LieSocial
           </h1>
+          <SideNavBar />
           <TwitterFeed />
         </div>
       </main>
