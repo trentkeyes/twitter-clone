@@ -1,19 +1,22 @@
-import NavHome from "./SideNavItems/NavHome";
-import NavBell from "./SideNavItems/NavBell";
-import NavMail from "./SideNavItems/NavMail";
-import NavProfile from "./SideNavItems/NavProfile";
-import NavHashtag from "./SideNavItems/NavHashtag";
-import NavSettings from "./SideNavItems/NavSettings";
+import SideNavItem from "./SideNavItem";
+import {
+  BellAlertIcon,
+  Cog6ToothIcon,
+  HashtagIcon,
+  HomeIcon,
+  UserIcon,
+  EnvelopeIcon,
+} from "@heroicons/react/24/solid";
 
 const SideNavBar = () => {
   return (
     <div className="flex flex-col gap-2">
-      <NavHome />
-      <NavMail />
-      <NavBell />
-      <NavProfile />
-      <NavHashtag />
-      <NavSettings />
+      <SideNavItem name="Home" Icon={HomeIcon} />
+      <SideNavItem name="Trends" Icon={HashtagIcon} />{" "}
+      <SideNavItem name="Notification" Icon={BellAlertIcon} />
+      <SideNavItem name="Messages" Icon={EnvelopeIcon} />
+      <SideNavItem name="Profile" Icon={UserIcon} />
+      <SideNavItem name="Settings" Icon={Cog6ToothIcon} />
     </div>
   );
 };

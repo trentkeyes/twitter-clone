@@ -1,10 +1,15 @@
-import { HomeIcon } from "@heroicons/react/24/solid";
+import { FunctionComponent } from "react";
 
-const SideNavItem = () => {
+type Props = {
+  Icon: React.ElementType;
+  name: string;
+};
+
+const SideNavItem: FunctionComponent<Props> = ({ name, Icon }) => {
   return (
-    <div className="flex items-center p-2 text-white border-red-600 border-2">
-      <HomeIcon className="h-6 w-6" />
-      <span>Home</span>
+    <div className="flex cursor-pointer items-center gap-2 rounded p-2 text-white hover:bg-gray-600 hover:bg-opacity-50">
+      <Icon className="h-6 w-6" />
+      <span>{name}</span>
     </div>
   );
 };
