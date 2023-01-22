@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import CenterColumn from "../components/CenterColumn";
 import RightColumn from "../components/RightColumn";
 import SideNavBar from "../components/SideNavBar";
 import TwitterFeed from "../components/TwitterFeed";
@@ -14,12 +15,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center bg-black text-white">
-        <div className="container flex justify-center p-4 gap-6">
+        <div className="container flex justify-center gap-6 p-4">
           {/* <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Welcome to LieSocial
           </h1> */}
           <SideNavBar />
-          <TwitterFeed />
+          <CenterColumn />
           <RightColumn />
         </div>
       </main>
