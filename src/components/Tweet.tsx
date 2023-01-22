@@ -3,7 +3,7 @@ import TweetStats from "./TweetStats";
 
 const Tweet = () => {
   return (
-    <div className="flex flex-col gap-2  text-white">
+    <div className="flex flex-col gap-2 text-white border-b border-gray-600 border-b-1 mb-2">
       <TweetAvatar />
       <p>
         Well, it’s 12:44pm here right now…and after 10 1/2 months…it’s (big)
@@ -12,7 +12,7 @@ const Tweet = () => {
         by this point)
       </p>
 
-      <p>
+      <p >
         <span>2:48 a. m. · 16 ene. 2023</span>
       </p>
       <TweetStats />
