@@ -10,7 +10,7 @@ import {
 
 const NewTweetForm = () => {
   return (
-    <div className="border-t-1 flex items-start justify-between border border-gray-600 px-3 py-2">
+    <div className="border-t-1 hidden items-start justify-between border border-gray-600 px-3 py-2 lg:flex">
       <Image
         src="/images/profile.jpg"
         alt="profile pic"

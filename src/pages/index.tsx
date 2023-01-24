@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center bg-black text-white">
-        <div className="container flex justify-center gap-6 p-4">
+        <div className="flex justify-center gap-6 p-4 lg:container">
           {/* <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Welcome to LieSocial
           </h1> */}

@@ -10,7 +10,7 @@ import {
 
 const SideNavBar = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="hidden flex-col gap-2 lg:flex">
       <SideNavItem name="Home" Icon={HomeIcon} />
       <SideNavItem name="Trends" Icon={HashtagIcon} />{" "}
       <SideNavItem name="Notification" Icon={BellAlertIcon} />

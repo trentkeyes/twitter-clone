@@ -3,7 +3,7 @@ import WhatsHappening from "./WhatsHappening";
 
 const RightColumn = () => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="hidden flex-col gap-3 lg:flex">
       <SearchBar />
       <WhatsHappening />
     </div>
