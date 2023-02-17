@@ -1,17 +1,15 @@
 import { type AppType } from "next/app";
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
-
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 import "../styles/globals.css";
+import { AuthProvider } from "../../provider/AuthProvider";
+import UserAuthProvider from "../../provider/AuthProvider";
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+const MyApp: AppType<any> = ({ Component, pageProps: { ...pageProps } }) => {
   return (
-    <SessionProvider session={session}>
+    <UserAuthProvider>
       <Component {...pageProps} />
-    </SessionProvider>
+    </UserAuthProvider>
   );
 };
 

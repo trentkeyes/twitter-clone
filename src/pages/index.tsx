@@ -19,6 +19,7 @@ const Home: NextPage = () => {
           {/* <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Welcome to LieSocial
           </h1> */}
+          
           <SideNavBar />
           <CenterColumn />
           <RightColumn />
