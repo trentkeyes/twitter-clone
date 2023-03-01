@@ -58,7 +58,7 @@ const NewTweetForm = () => {
     }
   }
 
-  const handleTweet = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleTweet = async (event) => {
     event.preventDefault();
     if (!tweet) {
       setError("Please enter a tweet.");
@@ -72,27 +72,14 @@ const NewTweetForm = () => {
     if (user) {
       console.log("user.uid: ", user.uid);
       console.log("tweet.length: ", tweet.length);
-      // const newKey = doc(db, "users", user.uid).id;
-      // const userRef = doc(db, "users", user.uid);
-      // console.log(userRef);
-      // troubleshoot why doc isn't being added to firebase database
-      // const docRef = await addDoc(collection(db, "users"), {
-      //   tweets: {
-      //     test: tweet,
-      //   },
-      // });
-      // await setDoc(
-      //   userRef,
-      //   {
-      //     tweets: {
-      //       test: tweet,
-      //     },
-      //   },
-      //   { merge: true }
-      // ).catch((err) => {
-      //   console.log(err);
-      // });
+      
       const userRef = doc(db, "users", user.uid);
+      // get a new id from firebase and add it to the tweet object
+      // const tweetRef = doc(collection(db, "tweets"));
+      // const tweet = {
+      //   content: tweet,
+        
+
       await setDoc(
         userRef,
         {
@@ -103,7 +90,7 @@ const NewTweetForm = () => {
         { merge: true }
       );
       console.log("Document written with ID: ", userRef.id);
-      
+
       setTweet("");
     }
   };
@@ -117,7 +104,7 @@ const NewTweetForm = () => {
         width={50}
         className="flex-none rounded-full"
       />
-      <form action="" className="w-full pl-2">
+      <div className="w-full pl-2">
         <textarea
           className="w-full resize-none bg-black pt-2 indent-1 outline-none"
           placeholder="What's happening?"
@@ -139,14 +126,14 @@ const NewTweetForm = () => {
             Tweet
           </button> */}
         </div>
-      </form>{" "}
-      <button
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onClick={handleTweet}
-        className="rounded-2xl bg-blue-700 px-4 py-1 "
-      >
-        Tweet
-      </button>
+        <button
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onClick={handleTweet}
+          className="rounded-2xl bg-blue-700 px-4 py-1 "
+        >
+          Tweet
+        </button>
+      </div>{" "}
     </div>
   );
 };

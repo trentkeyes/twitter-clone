@@ -5,6 +5,7 @@ import React from "react";
 import { useUserAuth } from "../../provider/AuthProvider";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { log } from "console";
 
 const Login = () => {
   const { loading, signUpWithEmailAndPassword, signIn, user } = useUserAuth();
@@ -30,6 +31,8 @@ const Login = () => {
     await signUpWithEmailAndPassword(email, password);
     if (user) {
       const userRef = doc(db, "users", user.uid);
+      console.log("user id", user.uid);
+
       await setDoc(userRef, {
         email: email,
         password: password,
