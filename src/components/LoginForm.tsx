@@ -1,7 +1,4 @@
 import { useState, useContext } from "react";
-import { auth } from "../../firebase";
-import { AuthContext } from "../../context/AuthContext";
-import { FirebaseSignInProvider } from "@firebase/util";
 
 const LoginForm = ({
   email,
@@ -11,17 +8,18 @@ const LoginForm = ({
   handleSignUp,
 }) => {
   return (
-    <div className="lg:border-1 border-gray-600 lg:border">
+    <div className="lg:border-1 flex flex-col justify-center border lg:border">
+      <h2 className="p-2 text-center text-2xl">LOGIN</h2>
       <input
         type="text"
-        className="w-full max-w-[40ch] border-b-2 border-solid border-white p-2 text-slate-900 outline-none duration-300 focus:border-cyan-300"
+        className="w-full max-w-[40ch] border-2 border-solid border-white bg-white p-2 text-black outline-none duration-300 focus:border-blue-600"
         placeholder="Email Address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
-        className="w-full max-w-[40ch] border-b-2 border-solid border-white p-2 text-slate-900 outline-none duration-300 focus:border-cyan-300"
+        className="w-full max-w-[40ch] border-2 border-solid border-white bg-white p-2 text-black outline-none duration-300 focus:border-blue-600"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}

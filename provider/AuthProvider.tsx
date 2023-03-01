@@ -7,6 +7,8 @@ import {
   User,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 interface UserAuthContextValue {
   user: User | null;
@@ -47,7 +49,26 @@ const UserAuthProvider: React.FC = ({ children }) => {
     email: string,
     password: string
   ): Promise<void> => {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const userCred = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCred.user;
+
+    try {
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        email: email,
+        password: password,
+      }),
+        {
+          merge: true,
+        };
+    } catch (error) {
+      console.error("Error adding tweet to Firestore: ", error);
+      throw error;
+    }
   };
 
   const signIn = async (email: string, password: string): Promise<void> => {

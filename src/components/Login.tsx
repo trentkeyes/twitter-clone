@@ -1,10 +1,12 @@
-import { type NextPage } from "next";
+// import { type NextPage } from "next";
 import { useState } from "react";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "./LoginForm";
 import React from "react";
 import { useUserAuth } from "../../provider/AuthProvider";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
-const Login: NextPage = () => {
+const Login = () => {
   const { loading, signUpWithEmailAndPassword, signIn, user } = useUserAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,22 +28,24 @@ const Login: NextPage = () => {
       return;
     }
     await signUpWithEmailAndPassword(email, password);
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        email: email,
+        password: password,
+      });
+    }
   };
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center bg-black text-white">
-        <div className="flex justify-center gap-6 p-4 lg:container">
-          {/* <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-              Welcome to LieSocial
-            </h1> */}
-          <LoginForm
-            handleSignUp={handleSignUp}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-          />
-        </div>
+      <main className="flex min-h-screen flex-col items-center justify-center bg-black text-white">
+        <LoginForm
+          handleSignUp={handleSignUp}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+        />
       </main>
     </>
   );
