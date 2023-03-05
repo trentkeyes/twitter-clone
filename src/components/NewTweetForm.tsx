@@ -18,6 +18,7 @@ import {
   setDoc,
   getDocs,
 } from "firebase/firestore";
+import useFetchTweets from "../../hooks/fetchTweets";
 
 import firebase from "firebase/app";
 
@@ -43,22 +44,9 @@ const NewTweetForm = () => {
 
   const { user } = useUserAuth();
 
-  async function addTestData() {
-    try {
-      console.log("testing");
-      const testDocRef = doc(db, "test2", "test");
-      const testDocData = {
-        message: "Hello, Firestore!",
-        timestamp: new Date(),
-      };
-      await setDoc(testDocRef, testDocData);
-      console.log("Test data added successfully!");
-    } catch (error) {
-      console.error("Error adding test data: ", error);
-    }
-  }
+  const { tweets, setTweets, loading } = useFetchTweets();
 
-  const handleTweet = async (event) => {
+  const handleAddTweet = async (event) => {
     event.preventDefault();
     if (!tweet) {
       setError("Please enter a tweet.");
@@ -70,27 +58,26 @@ const NewTweetForm = () => {
       return;
     }
     if (user) {
-      console.log("user.uid: ", user.uid);
-      console.log("tweet.length: ", tweet.length);
-      
       const userRef = doc(db, "users", user.uid);
-      // get a new id from firebase and add it to the tweet object
-      // const tweetRef = doc(collection(db, "tweets"));
-      // const tweet = {
-      //   content: tweet,
-        
+      console.log(tweets);
 
+      const newKey =
+        Object.keys(tweets).length === 0
+          ? 1
+          : [Math.max(...Object.keys(tweets)) + 1];
+      setTweets({
+        ...tweets,
+        [newKey]: tweet,
+      });
       await setDoc(
         userRef,
         {
           tweets: {
-            [userRef.id]: tweet,
+            [newKey]: tweet,
           },
         },
         { merge: true }
       );
-      console.log("Document written with ID: ", userRef.id);
-
       setTweet("");
     }
   };
@@ -128,7 +115,7 @@ const NewTweetForm = () => {
         </div>
         <button
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onClick={handleTweet}
+          onClick={handleAddTweet}
           className="rounded-2xl bg-blue-700 px-4 py-1 "
         >
           Tweet

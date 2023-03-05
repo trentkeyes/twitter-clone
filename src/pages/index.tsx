@@ -12,7 +12,7 @@ import Login from "../components/Login";
 const Home: NextPage = () => {
   const { user } = useUserAuth();
   console.log(user?.email);
-  
+
   return (
     <>
       <Head>
@@ -21,9 +21,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center bg-black text-white">
-       
-        {user && <UserHome />} 
         {!user && <Login />}
+        {user && <UserHome />}
       </main>
     </>
   );
