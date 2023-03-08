@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useUserAuth } from "../../provider/AuthProvider";
 
 const LoginForm = ({
   email,
@@ -7,6 +8,8 @@ const LoginForm = ({
   setPassword,
   handleSignUp,
 }) => {
+  const { user } = useUserAuth();
+  
   return (
     <div className="lg:border-1 flex flex-col justify-center border lg:border">
       <h2 className="p-2 text-center text-2xl">LOGIN</h2>
