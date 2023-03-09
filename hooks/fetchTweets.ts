@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useUserAuth } from "../provider/AuthProvider";
 import { db } from "../firebase";
@@ -14,12 +14,14 @@ export default function useFetchTweets() {
     async function fetchData() {
       if (!user) return;
       try {
-        console.log(user.uid);
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          console.log(docSnap.data());
-
+          console.log("found user data", docSnap.data().tweets);
+          if (!docSnap.data().tweets) {
+            setTweets({});
+            return;
+          }
           setTweets(docSnap.data().tweets);
         } else {
           setTweets({});

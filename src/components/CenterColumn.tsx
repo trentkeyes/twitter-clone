@@ -13,7 +13,6 @@ const CenterColumn = () => {
           </button>
         </div>
       </div>
-      <NewTweetForm />
       <TwitterFeed />
     </div>
   );

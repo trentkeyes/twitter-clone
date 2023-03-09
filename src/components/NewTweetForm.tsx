@@ -38,13 +38,13 @@ type Tweet = {
 //   return newTweet;
 // }
 
-const NewTweetForm = () => {
+const NewTweetForm = ({ tweets, setTweets }) => {
   const [tweet, setTweet] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const { user } = useUserAuth();
 
-  const { tweets, setTweets, loading } = useFetchTweets();
+  console.log(tweets);
 
   const handleAddTweet = async (event) => {
     event.preventDefault();
@@ -59,8 +59,6 @@ const NewTweetForm = () => {
     }
     if (user) {
       const userRef = doc(db, "users", user.uid);
-      console.log(tweets);
-
       const newKey =
         Object.keys(tweets).length === 0
           ? 1
@@ -120,6 +118,7 @@ const NewTweetForm = () => {
         >
           Tweet
         </button>
+        {tweets && Object.values(tweets)}
       </div>{" "}
     </div>
   );
